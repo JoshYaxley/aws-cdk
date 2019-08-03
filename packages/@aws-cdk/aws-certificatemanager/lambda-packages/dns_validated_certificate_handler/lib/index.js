@@ -104,7 +104,7 @@ const requestCertificate = async function (requestId, domainName, subjectAlterna
     describeCertResponse = await acm.describeCertificate({
       CertificateArn: reqCertResponse.CertificateArn
     }).promise();
-  } while (describeCertResponse.Certificate.DomainValidationOptions < 1 ||
+  } while (describeCertResponse.Certificate.DomainValidationOptions.length < 1 ||
     'ResourceRecord' in describeCertResponse.Certificate.DomainValidationOptions[0] === false);
 
   const record = describeCertResponse.Certificate.DomainValidationOptions[0].ResourceRecord;
